@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class AddressBook extends Contacts {
 
+
 	ArrayList<Contacts> contact = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
 	Contacts contacts = new Contacts();
@@ -215,5 +216,4 @@ public class AddressBook extends Contacts {
 		}
 
 	}
-
 }

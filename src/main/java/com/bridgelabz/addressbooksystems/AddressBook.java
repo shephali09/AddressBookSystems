@@ -70,7 +70,7 @@ public class AddressBook extends Contacts {
 		return false;
 	}
 
-	public ArrayList<Contacts> searchByCity(String city) {
+	public ArrayList<Contacts> viewContactsByCity(String city) {
 		ArrayList<Contacts> result = new ArrayList<>();
 		for (int i = 0; i < contact.size(); i++) {
 
@@ -82,11 +82,19 @@ public class AddressBook extends Contacts {
 		}
 		if (result.isEmpty()) {
 			System.out.println("No contact found in the given city");
+		} else {
+			System.out.println("Contacts in the city of " + city + ":");
+			for (int i = 0; i < contact.size(); i++) {
+				System.out.println("First Name: " + contacts.getFirstName() + " " + "Last Name: "
+						+ contacts.getLastName() + " " + "Address: " + contacts.getCity() + " " + "State: "
+						+ contacts.getState() + " " + "Email: " + contacts.getEmail() + " " + "Zip: "
+						+ contacts.getZip() + " " + "Phone Number: " + contacts.getPhoneNumber());
+			}
 		}
 		return result;
 	}
 
-	public ArrayList<Contacts> searchByState(String state) {
+	public ArrayList<Contacts> viewContactByState(String state) {
 		ArrayList<Contacts> result = new ArrayList<>();
 		for (int i = 0; i < contact.size(); i++) {
 			if (contact.get(i).getState().equalsIgnoreCase(state)) {
@@ -95,6 +103,15 @@ public class AddressBook extends Contacts {
 		}
 		if (result.isEmpty()) {
 			System.out.println("No Contact found in the given state");
+		} else {
+			System.out.println("Contacts in the state of " + state + ":");
+			for (int i = 0; i < contact.size(); i++) {
+				System.out.println("First Name: " + contacts.getFirstName() + " " + "Last Name: "
+						+ contacts.getLastName() + " " + "Address: " + contacts.getCity() + " " + "State: "
+						+ contacts.getState() + " " + "Email: " + contacts.getEmail() + " " + "Zip: "
+						+ contacts.getZip() + " " + "Phone Number: " + contacts.getPhoneNumber());
+
+			}
 		}
 		return result;
 	}

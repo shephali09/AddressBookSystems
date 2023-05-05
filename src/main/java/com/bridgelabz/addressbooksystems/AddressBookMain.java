@@ -35,12 +35,12 @@ public class AddressBookMain {
 			case 5:
 				System.out.println("Enter city: ");
 				String city = scanner.next();
-				addressbook.searchByCity(city);
+				addressbook.viewContactsByCity(city);
 				break;
 			case 6:
 				System.out.println("Enter State: ");
 				String state = scanner.next();
-				addressbook.searchByState(state);
+				addressbook.viewContactByState(state);
 				break;
 			case 7:
 				System.out.println("Program terminated successfully");
@@ -51,7 +51,7 @@ public class AddressBookMain {
 
 			}
 			System.out.println(
-					"\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Delete Contact\n5.Search By City\n6.Search By State\n0.Exit\n");
+					"\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Delete Contact\n5.View By City\n6.View By State\n0.Exit\n");
 			choice = scanner.nextInt();
 		}
 

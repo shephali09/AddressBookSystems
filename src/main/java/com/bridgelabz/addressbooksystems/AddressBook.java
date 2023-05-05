@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class AddressBook extends Contacts {
 
-	ArrayList<Contacts> contact = new ArrayList<Contacts>();
+	ArrayList<Contacts> contact = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
 	Contacts contacts = new Contacts();
 
@@ -68,6 +68,35 @@ public class AddressBook extends Contacts {
 			}
 		}
 		return false;
+	}
+
+	public ArrayList<Contacts> searchByCity(String city) {
+		ArrayList<Contacts> result = new ArrayList<>();
+		for (int i = 0; i < contact.size(); i++) {
+
+			if (contact.get(i).getCity().equalsIgnoreCase(city)) {
+				System.out.println(result.add(contacts));
+
+			}
+
+		}
+		if (result.isEmpty()) {
+			System.out.println("No contact found in the given city");
+		}
+		return result;
+	}
+
+	public ArrayList<Contacts> searchByState(String state) {
+		ArrayList<Contacts> result = new ArrayList<>();
+		for (int i = 0; i < contact.size(); i++) {
+			if (contact.get(i).getState().equalsIgnoreCase(state)) {
+				System.out.println(result.add(contacts));
+			}
+		}
+		if (result.isEmpty()) {
+			System.out.println("No Contact found in the given state");
+		}
+		return result;
 	}
 
 	public void displayContacts() {

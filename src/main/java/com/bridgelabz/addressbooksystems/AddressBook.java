@@ -12,40 +12,62 @@ public class AddressBook extends Contacts {
 
 	public void addContacts() {
 
-		System.out.println("Enter First Name: ");
-		String firstName = scanner.nextLine();
-		contacts.setFirstName(firstName);
+		boolean addMoreContacts = true;
+		while (addMoreContacts) {
 
-		System.out.println("Enter Last Name: ");
-		String lastName = scanner.nextLine();
-		contacts.setLastName(lastName);
+			System.out.println("Enter First Name: ");
+			String firstName = scanner.nextLine();
+			contacts.setFirstName(firstName);
 
-		System.out.println("Enter Address: ");
-		String address = scanner.nextLine();
-		contacts.setAddress(address);
+			System.out.println("Enter Last Name: ");
+			String lastName = scanner.nextLine();
+			contacts.setLastName(lastName);
+			if (isContactExists(firstName, lastName)) {
+				System.out.println("Contact with same name already exists!");
+				continue;
+			}
 
-		System.out.println("Enter City: ");
-		String city = scanner.nextLine();
-		contacts.setCity(city);
+			System.out.println("Enter Address: ");
+			String address = scanner.nextLine();
+			contacts.setAddress(address);
 
-		System.out.println("Enter State: ");
-		String state = scanner.nextLine();
-		contacts.setState(state);
+			System.out.println("Enter City: ");
+			String city = scanner.nextLine();
+			contacts.setCity(city);
 
-		System.out.println("Enter Email: ");
-		String email = scanner.nextLine();
-		contacts.setEmail(email);
+			System.out.println("Enter State: ");
+			String state = scanner.nextLine();
+			contacts.setState(state);
 
-		System.out.println("Enter zip: ");
-		int zip = scanner.nextInt();
-		contacts.setZip(zip);
+			System.out.println("Enter Email: ");
+			String email = scanner.nextLine();
+			contacts.setEmail(email);
 
-		System.out.println("Enter Phone Number: ");
-		long phoneNumber = scanner.nextLong();
-		contacts.setPhoneNumber(phoneNumber);
+			System.out.println("Enter zip: ");
+			int zip = scanner.nextInt();
+			contacts.setZip(zip);
 
-		contact.add(contacts);
-		System.out.println("Person added successfully!");
+			System.out.println("Enter Phone Number: ");
+			long phoneNumber = scanner.nextLong();
+			contacts.setPhoneNumber(phoneNumber);
+
+			contact.add(contacts);
+			System.out.println("Person added successfully!");
+
+			System.out.println("Do you want to add another contact? (Y/N)");
+			String choice = scanner.nextLine();
+			addMoreContacts = choice.equalsIgnoreCase("Y");
+		}
+	}
+
+	public boolean isContactExists(String firstName, String lastName) {
+		for (Contacts contact : contact) {
+			if (contact.getFirstName().equalsIgnoreCase(firstName)
+					&& contact.getLastName().equalsIgnoreCase(lastName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void displayContacts() {

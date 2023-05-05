@@ -1,14 +1,21 @@
 package com.bridgelabz.addressbooksystems;
 
+import java.io.IOException;
 import java.util.Scanner;
+
+import com.opencsv.exceptions.CsvValidationException;
 
 public class AddressBookMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, CsvValidationException, ClassCastException {
 
 		System.out.println("Welcome to Address Book Program!");
 
 		AddressBook addressbook = new AddressBook();
+		addressbook.writeIntoFile();
+		addressbook.readFromFile();
+		addressbook.writeIntoCSVFile();
+		addressbook.readFromCSVFile();
 
 		System.out.println(
 				"\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Delete Contact\n5.Search By City\n6.Search By State\n7.Count By City\n8.Count By State\n9.Exit\n");

@@ -10,7 +10,7 @@ public class AddressBookMain {
 
 		AddressBook addressbook = new AddressBook();
 
-		System.out.println("\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Exit\n");
+		System.out.println("\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Delete Contact\n5.Exit\n");
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter choice");
 		int choice = scanner.nextInt();
@@ -30,17 +30,19 @@ public class AddressBookMain {
 				addressbook.editExistingContact();
 				break;
 			case 4:
+				addressbook.deleteContact();
+			case 5:
 				System.out.println("Program terminated successfully");
 				break;
+
 			default:
 				System.out.println("Enter Correct choice!");
 
 			}
-			System.out.println("\n1.Add contact\n2.Show Contact\n3.Edit Contact\n0.Exit\n");
+			System.out.println("\n1.Add contact\n2.Show Contact\n3.Edit Contact\n4.Delete Contact\n0.Exit\n");
 			choice = scanner.nextInt();
 		}
 		System.out.println("Good Bye to Address Book Program");
 
 	}
-
 }

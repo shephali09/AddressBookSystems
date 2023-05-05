@@ -1,11 +1,15 @@
 package com.bridgelabz.addressbooksystems;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook extends Contacts {
-
 
 	ArrayList<Contacts> contact = new ArrayList<>();
 	Scanner scanner = new Scanner(System.in);
@@ -216,4 +220,73 @@ public class AddressBook extends Contacts {
 		}
 
 	}
+
+	public void writeIntoFile() {
+
+		File file = new File(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.txt");
+		try {
+
+			FileWriter fileWriter = new FileWriter(file);
+			System.out.println("Enter first name: ");
+			String firstName = scanner.nextLine();
+			contacts.setFirstName(firstName);
+
+			System.out.println("Enter last name: ");
+			String lastName = scanner.nextLine();
+			contacts.setLastName(lastName);
+
+			System.out.println("Enter address: ");
+			String address = scanner.nextLine();
+			contacts.setAddress(address);
+
+			System.out.println("Enter city: ");
+			String city = scanner.nextLine();
+			contacts.setCity(city);
+
+			System.out.println("Enter state: ");
+			String state = scanner.nextLine();
+			contacts.setState(state);
+
+			System.out.println("Enter zip: ");
+			int zip = scanner.nextInt();
+			contacts.setZip(zip);
+
+			System.out.println("Enter phone number: ");
+			long phoneNumber = scanner.nextLong();
+			contacts.setPhoneNumber(phoneNumber);
+
+			System.out.println("Enter email: ");
+			String email = scanner.next();
+			contacts.setEmail(email);
+
+			fileWriter.write(firstName + "\n");
+			fileWriter.write(lastName + "\n");
+			fileWriter.write(address + "\n");
+			fileWriter.write(city + "\n");
+			fileWriter.write(state + "\n");
+			fileWriter.write(zip + "\n");
+			fileWriter.write(phoneNumber + "\n");
+			fileWriter.write(email + "\n");
+
+			fileWriter.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void readFromFile() throws IOException {
+		File file = new File(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.txt");
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String line = reader.readLine();
+		while (line != null) {
+			System.out.println(line);
+			line = reader.readLine();
+		}
+
+	}
+
 }

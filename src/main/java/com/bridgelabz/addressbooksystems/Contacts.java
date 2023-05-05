@@ -58,6 +58,10 @@ public class Contacts {
 		this.state = state;
 	}
 
+	public String getState() {
+		return state;
+	}
+
 	public String getEmail() {
 		return email;
 	}

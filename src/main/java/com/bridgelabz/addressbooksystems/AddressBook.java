@@ -1,8 +1,18 @@
 package com.bridgelabz.addressbooksystems;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
 
 public class AddressBook extends Contacts {
 
@@ -214,6 +224,202 @@ public class AddressBook extends Contacts {
 				System.out.println("Contact data not found");
 			}
 		}
+
+	}
+	
+	public void writeIntoFile() {
+
+		File file = new File(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.txt");
+		try {
+
+			FileWriter fileWriter = new FileWriter(file);
+			System.out.println("Enter first name: ");
+			String firstName = scanner.nextLine();
+			contacts.setFirstName(firstName);
+
+			System.out.println("Enter last name: ");
+			String lastName = scanner.nextLine();
+			contacts.setLastName(lastName);
+
+			System.out.println("Enter address: ");
+			String address = scanner.nextLine();
+			contacts.setAddress(address);
+
+			System.out.println("Enter city: ");
+			String city = scanner.nextLine();
+			contacts.setCity(city);
+
+			System.out.println("Enter state: ");
+			String state = scanner.nextLine();
+			contacts.setState(state);
+
+			System.out.println("Enter zip: ");
+			int zip = scanner.nextInt();
+			contacts.setZip(zip);
+
+			System.out.println("Enter phone number: ");
+			long phoneNumber = scanner.nextLong();
+			contacts.setPhoneNumber(phoneNumber);
+
+			System.out.println("Enter email: ");
+			String email = scanner.next();
+			contacts.setEmail(email);
+
+			fileWriter.write(firstName + "\n");
+			fileWriter.write(lastName + "\n");
+			fileWriter.write(address + "\n");
+			fileWriter.write(city + "\n");
+			fileWriter.write(state + "\n");
+			fileWriter.write(zip + "\n");
+			fileWriter.write(phoneNumber + "\n");
+			fileWriter.write(email + "\n");
+
+			fileWriter.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void readFromFile() throws IOException {
+		File file = new File(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.txt");
+		BufferedReader reader = new BufferedReader(new FileReader(file));
+		String line = reader.readLine();
+		while (line != null) {
+			System.out.println(line);
+			line = reader.readLine();
+		}
+
+	}
+
+	public void writeIntoCSVFile() throws IOException, ClassCastException, CsvValidationException {
+		CSVWriter csvWriter = new CSVWriter(new FileWriter(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.csv"));
+
+		System.out.println("Enter first name: ");
+		String firstName = scanner.nextLine();
+		contacts.setFirstName(firstName);
+
+		System.out.println("Enter last name: ");
+		String lastName = scanner.nextLine();
+		contacts.setLastName(lastName);
+
+		System.out.println("Enter address: ");
+		String address = scanner.nextLine();
+		contacts.setAddress(address);
+
+		System.out.println("Enter city: ");
+		String city = scanner.nextLine();
+		contacts.setCity(city);
+
+		System.out.println("Enter state: ");
+		String state = scanner.nextLine();
+		contacts.setState(state);
+
+		System.out.println("Enter zip: ");
+		int zip = scanner.nextInt();
+		contacts.setZip(zip);
+
+		System.out.println("Enter phone number: ");
+		long phoneNumber = scanner.nextLong();
+		contacts.setPhoneNumber(phoneNumber);
+
+		System.out.println("Enter email: ");
+		String email = scanner.next();
+		contacts.setEmail(email);
+
+		List<String[]> list = new ArrayList<>();
+		list.add(new String[] { firstName });
+		list.add(new String[] { lastName });
+		list.add(new String[] { address });
+		list.add(new String[] { city });
+		list.add(new String[] { state });
+		list.add(new String[] { Integer.toString(zip) });
+		list.add(new String[] { Long.toString(phoneNumber) });
+		list.add(new String[] { email });
+
+		csvWriter.writeAll(list);
+		csvWriter.close();
+		System.out.println("Data Stored.");
+
+	}
+
+	public void readFromCSVFile() throws CsvValidationException, IOException {
+
+		CSVReader csvReader = new CSVReader(new FileReader(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.csv"));
+		// StringBuffer buffer = new StringBuffer();
+		String addressBookData[];
+		while ((addressBookData = csvReader.readNext()) != null) {
+			for (String data : addressBookData) {
+				System.out.println(data + " ");
+			}
+
+			System.out.println(" ");
+
+		}
+	}
+
+	public void writeIntoJSONFile() throws IOException {
+		Gson gson = new Gson();
+		FileWriter fileWriter = new FileWriter(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.json");
+		System.out.println("Enter first name: ");
+		String firstName = scanner.nextLine();
+
+		System.out.println("Enter last name: ");
+		String lastName = scanner.nextLine();
+
+		System.out.println("Enter address: ");
+		String address = scanner.nextLine();
+
+		System.out.println("Enter city: ");
+		String city = scanner.nextLine();
+
+		System.out.println("Enter state: ");
+		String state = scanner.nextLine();
+
+		System.out.println("Enter zip: ");
+		int zip = scanner.nextInt();
+
+		System.out.println("Enter phone number: ");
+		long phoneNumber = scanner.nextLong();
+
+		System.out.println("Enter email: ");
+		String email = scanner.next();
+
+		contacts.setFirstName(firstName);
+		contacts.setLastName(lastName);
+		contacts.setAddress(address);
+		contacts.setCity(city);
+		contacts.setState(state);
+		contacts.setZip(zip);
+		contacts.setPhoneNumber(phoneNumber);
+		contacts.setEmail(email);
+
+		String json = gson.toJson(contacts);
+		fileWriter.write(json);
+		fileWriter.close();
+		System.out.println(json);
+	}
+
+	public void readFromJSONFile() throws IOException {
+		Gson gson = new Gson();
+		System.out.println("Reading data from the json: ");
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(
+				"C:\\Users\\HP\\eclipse-workspace\\AddressBookSystems\\src\\main\\java\\com\\bridgelabz\\addressbooksystems\\AddressBook.json"));
+		Contacts contacts = gson.fromJson(bufferedReader, Contacts.class);
+		System.out.println("First Name: " + contacts.getFirstName());
+		System.out.println("Last Name: " + contacts.getLastName());
+		System.out.println("Address: " + contacts.getAddress());
+		System.out.println("City: " + contacts.getCity());
+		System.out.println("State: " + contacts.getState());
+		System.out.println("Zip: " + contacts.getZip());
+		System.out.println("Phone Number: " + contacts.getPhoneNumber());
+		System.out.println("Email: " + contacts.getEmail());
 
 	}
 }
